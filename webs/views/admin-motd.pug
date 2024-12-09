@@ -1,0 +1,37 @@
+extends admin-layout
+
+block mainbody
+  .buttons
+    h1 Message of the day
+    p
+    form(method='POST' action='/admin/create/motd')
+      button.add(type="submit")
+        .icon &plus;
+        p New
+  each message in motd
+    hr
+    form(method='POST' action='/admin/update/motd')
+      table
+        tr
+          th.label #{message['id']}
+          th #{message['title']}
+        each value, field in message
+          if field != 'id'
+            tr
+              td.label: label(for=field) #{field}:
+              if field == 'body'
+                td: textarea(name=field)
+                  =message[field]
+              else
+                td: input(type="text", size=30, name=field, value=message[field])
+        tr.norule
+          td: input(type="hidden" name="id" value=message['id'])
+          td.buttons
+            button.update(type="submit" name="update")
+              .icon &check;
+              p Update
+            .space
+            button.delete(name="action" value="delete" onclick="return confirm('Are you sure?')")
+              .icon X
+              p Delete
+    p

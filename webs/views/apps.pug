@@ -1,0 +1,16 @@
+extends layout
+
+block mainbody
+  h3 Hello, this is the Apps page
+  p Below you can download the Expense Tracker app:
+  
+  //- Add a download button
+  a(href=" /downloads/ExpenseTrackerSetup.exe" download)
+    button Download Expense Tracker
+
+  p
+    | To install the Expense Tracker:
+    ol
+      li Click the "Download" button above.
+      li Once the download is complete, open the downloaded file.
+      li Follow the on-screen instructions to complete the installation.

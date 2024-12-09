@@ -1,0 +1,17 @@
+extends layout
+
+block mainbody
+  h3 This is the profile page for, #{username}
+  p Your username is: #{username}
+  
+  form(action="/profile/update-username" method="post")
+    label(for="username") Update Username:
+    input(type="username" name="username" value=username required)
+    button(type="submit") Save
+  
+  p Your email is: #{email}
+
+  form(action="/profile/update-email" method="post")
+    label(for="email") Update Email:
+    input(type="email" name="email" value=email required)
+    button(type="submit") Save

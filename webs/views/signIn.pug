@@ -1,0 +1,22 @@
+extends signlayout
+
+block mainbody
+  #mainbody
+    section#mainbodyitems
+      h3 Hello World
+      p This is the signIn page
+
+      h3 Sign in
+
+      if failed 
+        h4 Incorrect username or password
+
+      form(action="/auth/signIn" method="post")
+        section
+          label(for="username") Username
+          input#username(name="username" type="text" autocomplete="username" required)
+        section
+          label(for="current-password") Password
+          input#current-password(name="password" type="password" autocomplete="current-password" required)
+        button(type="submit") Sign in
+        a(href="/auth/signUp") Need to make an account? Press me

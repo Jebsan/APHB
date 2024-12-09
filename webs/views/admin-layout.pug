@@ -1,0 +1,49 @@
+doctype html
+html
+  head
+    title= pagetitle
+    meta(charset="utf-8")
+    meta(name="viewport" content="width=device-width, initial-scale=1")
+    script(src="/javascripts/menu.js")
+    script(src="/javascripts/datestring.js")
+    link(rel="stylesheet", href="/stylesheets/style.css")
+  body
+    #menu
+      section#menuitems
+        .menubutton
+          h1.menubutton(onclick="menuToggle('hide')") &#9776;
+        p
+        a(href="/admin/announce")
+          h3.sectrule &#9998; Announce
+        a(href="/admin/items")
+          h3 &#9998; Items
+        a(href="/admin/events")
+          h3 &#9998; Events
+        a(href="/admin/motd")
+          h3 &#9998; Message
+        a(href="/")
+          h3.sectrule &rarr; Go to site  
+    #container(onmouseup="menuToggle('hide')")
+      #header
+        a(href="/admin")
+          h1(style="padding-left: 0") Control Panel
+        .headspace
+        h1.menubutton(onclick="menuToggle('show')") &#9776;
+        h1.placeholder &#9776;
+        a(href="/")
+          h2.navitem &rarr; Go to site
+      #panel.left
+        section#sections
+          a.sectionlink(href="/admin/announce")
+            p &#9998; Announce
+          a.sectionlink(href="/admin/items")
+            p &#9998; Items
+          a.sectionlink(href="/admin/events")
+            p &#9998; Events
+          a.sectionlink(href="/admin/motd")
+            p  &#9998; Message
+      #mainbody
+        block mainbody
+      #panel.right
+      #footer
+        p Copyright &copy; 2020 Alice &amp; Bob's Farm Stand

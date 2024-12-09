@@ -1,0 +1,47 @@
+doctype html
+html
+  head
+    title=pagetitle
+    meta(charset="utf-8")
+    meta(name="viewport" content="width=device-width, initial-scale=1")
+    script(src="/javascripts/menu.js")
+    link(rel="stylesheet", href="/stylesheets/style.css")
+  body
+    #menu
+      section#menuitems
+        .menubutton
+          h1.menubutton(onclick="menuToggle('hide')") &#9776;
+        a(href="/")
+          h3.menuhead APHB
+        a(href="/auth/signIn")
+          h3.menuhead Sign In
+        a(href="/auth/signUp")
+          h3.menuhead Sign Up
+        a(href="/about")
+          h3.sectrule About Us
+        a(href="/contact")
+          h3 Contact Us
+    #container(onmouseup="menuToggle('hide')")
+      #header
+        a(href="/")
+          h1.logo APHB
+        .headspace
+        h1.menubutton(onclick="menuToggle('show')") &#9776;
+        h1.placeholder &#9776;
+        h2.navitem
+          a(href="/about")
+            .clickable-area About Us
+        h2.navitem
+          a(href="/contact")
+            .clickable-area Contact Us
+      #panel.left
+        section#sections
+          a.sectionlink(href="/auth/signIn")
+            p Sign In
+          a.sectionlink(href="/auth/signUp")
+            p Sign Up
+      #mainbody
+        section
+          block mainbody
+      #footer
+        p Copyright &copy; 2023 APHB

@@ -1,0 +1,52 @@
+extends layout
+
+block mainbody
+  h3 Welcome, #{username}
+  h3 Announcements
+  .indent
+    .announceitem
+      each announce in announcements
+        unless announce.title == ""
+          h4.title #{announce.title}
+          p.date #{announce.date}
+          p #{announce.body}
+  h3 Items for sale
+  .indent
+    table
+      tr
+        th Item
+        th Description
+        th Price
+        th.qty Qty
+      each item in items
+        unless item.name == ""
+          tr
+            td #{item.name}
+            td #{item.desc}
+            td.price $#{item.price}
+              span.perunit  / #{item.unit}
+            td.qty #{item.qty}
+  h3 Upcoming events
+  each event in events
+    unless event.title == ""
+      .eventitem.indent
+        h4.title #{event.title}
+        p.date #{event.date}
+        p #{event.body}
+  each message in motd
+    unless message.title == ""
+      h3 #{message.title}
+      .motditem.indent
+        p #{message.body}
+  h3#partners.wide Our friends
+  .indent
+    section#partners.wide
+      a.partnerlink.wide(href="")
+        p Green Valley Greens
+      a.partnerlink.wide(href="")
+        p Burt's Maple Syrup
+      a.partnerlink.wide(href="")
+        p Turkey Hill Farm
+      a.partnerlink.wide(href="")
+        p Only Organic Seeds
+  .bodyspace

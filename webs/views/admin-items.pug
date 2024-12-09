@@ -1,0 +1,37 @@
+extends admin-layout
+
+block mainbody
+  .buttons
+    h1 Items
+    p
+    form(method='POST' action='/admin/create/item')
+      button.add(type="submit")
+        .icon &plus;
+        p New
+  each item in items
+    hr
+    form(method='POST' action='/admin/update/item')
+      table
+        tr
+          th.label #{item['id']}
+          th #{item['name']}
+        each value, field in item
+          if field != 'id'
+            tr
+              td.label: label(for=field) #{field}:
+              if field == 'desc'
+                td: textarea(name=field)
+                  =item[field]
+              else
+                td: input(type="text", size=25, name=field, value=item[field])
+        tr.norule
+          td: input(type="hidden" name="id" value=item['id'])
+          td.buttons
+            button.update(type="submit" name="update")
+              .icon &check;
+              p Update
+            .space
+            button.delete(name="action" value="delete" onclick="return confirm('Are you sure?')")
+              .icon X
+              p Delete
+      p

@@ -1,0 +1,47 @@
+extends admin-layout
+
+block mainbody
+  .buttons
+    h1 Announcements
+    p
+    form(method='POST' action='/admin/create/announce')
+      button.add(type="submit")
+        .icon &plus;
+        p New
+  each announce in announcements
+    hr
+    form(method='POST' action='/admin/update/announce')
+      table
+        tr
+          th.label #{announce['id']}
+          th #{announce['title']}
+        each value, field in announce
+          if field != 'id'
+            - var inputId = "_" + announce['id'] + "_" + field;
+            - var useToday = "document.getElementById('_" + announce['id']
+            - useToday += "_" + field + "').value=todayString()";
+            tr
+              td.label: label(for=field) #{field}:
+              if field == 'body'
+                td: textarea(name=field id=inputId)
+                  =announce[field]
+              else
+                td.buttons
+                  if field == 'date'
+                    input(type="text", size=18, name=field, value=announce[field] id=inputId)
+                    p
+                    button(type="button" onclick=useToday)
+                      div today
+                  else
+                    input(type="text", size=28, name=field, value=announce[field] id=inputId)
+        tr.norule
+          td: input(type="hidden" name="id" value=announce['id'])
+          td.buttons
+            button.update(type="submit" name="update")
+              .icon &check;
+              p Update
+            .space
+            button.delete(name="action" value="delete" onclick="return confirm('Are you sure?')")
+              .icon X
+              p Delete
+    p
